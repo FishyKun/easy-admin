@@ -1,0 +1,17 @@
+{
+    "name": "janden/hy-dcat-admin",
+    "autoload": {
+        "psr-4": {
+            "HyDcatAdmin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "郭琨",
+            "email": "forloop163@163.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    }
+}
