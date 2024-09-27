@@ -1,22 +1,22 @@
 <?php
 
-namespace HyDcat\Admin;
+namespace EasyAdmin\Admin;
 
 use Closure;
-use HyDcat\Admin\Contracts\ExceptionHandler;
-use HyDcat\Admin\Contracts\Repository;
-use HyDcat\Admin\Exception\InvalidArgumentException;
-use HyDcat\Admin\Http\Controllers\AuthController;
-use HyDcat\Admin\Http\JsonResponse;
-use HyDcat\Admin\Layout\Menu;
-use HyDcat\Admin\Layout\Navbar;
-use HyDcat\Admin\Layout\SectionManager;
-use HyDcat\Admin\Repositories\EloquentRepository;
-use HyDcat\Admin\Support\Composer;
-use HyDcat\Admin\Support\Helper;
-use HyDcat\Admin\Traits\HasAssets;
-use HyDcat\Admin\Traits\HasHtml;
-use HyDcat\Admin\Traits\HasPermissions;
+use EasyAdmin\Admin\Contracts\ExceptionHandler;
+use EasyAdmin\Admin\Contracts\Repository;
+use EasyAdmin\Admin\Exception\InvalidArgumentException;
+use EasyAdmin\Admin\Http\Controllers\AuthController;
+use EasyAdmin\Admin\Http\JsonResponse;
+use EasyAdmin\Admin\Layout\Menu;
+use EasyAdmin\Admin\Layout\Navbar;
+use EasyAdmin\Admin\Layout\SectionManager;
+use EasyAdmin\Admin\Repositories\EloquentRepository;
+use EasyAdmin\Admin\Support\Composer;
+use EasyAdmin\Admin\Support\Helper;
+use EasyAdmin\Admin\Traits\HasAssets;
+use EasyAdmin\Admin\Traits\HasHtml;
+use EasyAdmin\Admin\Traits\HasPermissions;
 use Illuminate\Auth\GuardHelpers;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
@@ -25,6 +25,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use Symfony\Component\HttpFoundation\Response;
+use Hyperf\Context;
 
 class Admin
 {
@@ -72,7 +73,7 @@ class Admin
      */
     public static function longVersion()
     {
-        return sprintf('Dcat Admin <comment>version</comment> <info>%s</info>', static::VERSION);
+        return sprintf('Easy Admin <comment>version</comment> <info>%s</info>', static::VERSION);
     }
 
     /**
@@ -80,7 +81,7 @@ class Admin
      */
     public static function color()
     {
-        return app('admin.color');
+        return Context::get('admin.color');
     }
 
     /**
@@ -91,7 +92,7 @@ class Admin
      */
     public static function menu(Closure $builder = null)
     {
-        $menu = app('admin.menu');
+        $menu = Context::get('admin.menu');
 
         $builder && $builder($menu);
 
@@ -159,7 +160,7 @@ class Admin
      */
     public static function navbar(Closure $builder = null)
     {
-        $navbar = app('admin.navbar');
+        $navbar = Context::get('admin.navbar');
 
         $builder && $builder($navbar);
 
@@ -211,7 +212,7 @@ class Admin
      */
     public static function section(Closure $builder = null)
     {
-        $manager = app('admin.sections');
+        $manager = Context::get('admin.sections');
 
         $builder && $builder($manager);
 
@@ -225,7 +226,7 @@ class Admin
      */
     public static function setting()
     {
-        return app('admin.setting');
+        return Context::get('admin.setting');
     }
 
     /**
@@ -261,7 +262,7 @@ class Admin
      */
     public static function app()
     {
-        return app('admin.app');
+        return Context::get('admin.app');
     }
 
     /**
@@ -272,7 +273,7 @@ class Admin
      */
     public static function handleException(\Throwable $e)
     {
-        return app(ExceptionHandler::class)->handle($e);
+        return Context::get(ExceptionHandler::class)->handle($e);
     }
 
     /**
@@ -283,7 +284,7 @@ class Admin
      */
     public static function reportException(\Throwable $e)
     {
-        return app(ExceptionHandler::class)->report($e);
+        return Context::get(ExceptionHandler::class)->report($e);
     }
 
     /**
@@ -294,7 +295,7 @@ class Admin
      */
     public static function renderException(\Throwable $e)
     {
-        return app(ExceptionHandler::class)->render($e);
+        return Context::get(ExceptionHandler::class)->render($e);
     }
 
     /**
@@ -336,7 +337,7 @@ class Admin
      */
     public static function context()
     {
-        return app('admin.context');
+        return Context::get('admin.context');
     }
 
     /**
@@ -346,7 +347,7 @@ class Admin
      */
     public static function translator()
     {
-        return app('admin.translator');
+        return Context::get('admin.translator');
     }
 
     /**
@@ -445,10 +446,10 @@ class Admin
     public static function extension(?string $name = null)
     {
         if ($name) {
-            return app('admin.extend')->get($name);
+            return Context::get('admin.extend')->get($name);
         }
 
-        return app('admin.extend');
+        return Context::get('admin.extend');
     }
 
     /**
@@ -486,7 +487,7 @@ class Admin
      */
     public static function mixMiddlewareGroup(array $mix = [])
     {
-        $router = app('router');
+        $router = Context::get('router');
 
         $group = $router->getMiddlewareGroups()['admin'] ?? [];
 

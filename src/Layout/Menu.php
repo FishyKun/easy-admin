@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Layout;
+namespace EasyAdmin\Admin\Layout;
 
 use Dcat\Admin\Admin;
 use Dcat\Admin\Support\Helper;

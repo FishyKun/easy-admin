@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Exception;
+namespace EasyAdmin\Admin\Exception;
 
 use Dcat\Admin\Contracts\ExceptionHandler;
 use Dcat\Admin\Support\Helper;

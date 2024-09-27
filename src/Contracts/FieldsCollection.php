@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Contracts;
+namespace EasyAdmin\Admin\Contracts;
 
 use Dcat\Admin\Form\Field;
 use Illuminate\Support\Collection;

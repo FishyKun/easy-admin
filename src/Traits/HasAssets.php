@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Traits;
+namespace EasyAdmin\Admin\Traits;
 
 trait HasAssets
 {

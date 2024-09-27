@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Support;
+namespace EasyAdmin\Admin\Support;
 
 use Composer\Autoload\ClassLoader;
 

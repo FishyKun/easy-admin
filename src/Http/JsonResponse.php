@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Http;
+namespace EasyAdmin\Admin\Http;
 
 use Dcat\Admin\Exception\AdminException;
 use Dcat\Admin\Support\Helper;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Http\Controllers;
+namespace EasyAdmin\Admin\Http\Controllers;
 
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Repositories;
+namespace EasyAdmin\Admin\Repositories;
 
 use Dcat\Admin\Contracts\TreeRepository;
 use Dcat\Admin\Exception\AdminException;
